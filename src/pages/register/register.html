@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Yeni Hesap Oluştur
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="doRegister()" [formGroup]="registerForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Ad Soyad</ion-label>
+        <ion-input type="text" name="name" formControlName="name"></ion-input>
+      </ion-item>
+
+      <p *ngIf="registerForm.controls['name'].errors && registerForm.controls['name'].dirty" padding class="error-message">
+        <small class="up">
+          <span *ngIf="registerForm.controls['name'].errors['required']">Ad Soyad gerekli<br></span>
+          <span *ngIf="registerForm.controls['name'].errors['maxlength']">Ad Soyad en fazla 42 karakter olabilir<br></span>
+        </small>
+      </p>
+
+      <ion-item>
+        <ion-label floating>Kullanıcı Adı</ion-label>
+        <ion-input type="text" name="username"  formControlName="username"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="registerForm.controls.username.pending">
+        <p>Kullanıcı Adı Kontrol Ediliyor...</p>
+      </ion-item>
+
+      <p *ngIf="registerForm.controls['username'].errors && registerForm.controls['username'].dirty " padding class="error-message">
+        <small class="up">
+          <span *ngIf="registerForm.controls['username'].errors['required']">Kullanıcı adı gerekli<br></span>
+          <span *ngIf="registerForm.controls['username'].errors['maxlength']">Kullanıcı adı 30 karakterden uzun olamaz<br></span>
+          <span *ngIf="registerForm.controls['username'].errors['pattern']">Kullanıcı adı sadece harf,rakam,düz çizgi ve alt çizgiden oluşabilir. Lütfen Türkçe karakter kullanmayınız.<br></span>
+          <span *ngIf="registerForm.controls['username'].errors['usage']">Bu Kullanıcı adı zaten kullanılıyor<br></span>
+        </small>
+      </p>
+
+      <ion-item>
+        <ion-label floating>E-Posta Adresi</ion-label>
+        <ion-input type="email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="registerForm.controls.email.pending">
+        <p>E-Posta Adresi Kontrol Ediliyor...</p>
+      </ion-item>
+
+      <p *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].dirty " padding class="error-message">
+        <small class="up">
+          <span *ngIf="registerForm.controls['email'].errors['required']">E-Posta adresi gerekli<br></span>
+          <span *ngIf="registerForm.controls['email'].errors['email']">Lütfen geçerli bir e-posta adresi giriniz<br></span>
+          <span *ngIf="registerForm.controls['email'].errors['usage']">Bu e-posta adresi zaten kullanılıyor<br></span>
+        </small>
+      </p>
+
+      <ion-item>
+        <ion-label floating>Parola</ion-label>
+        <ion-input type="password" name="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <p *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].dirty " padding class="error-message">
+        <small class="up">
+          <span *ngIf="registerForm.controls['password'].errors['required']">Parola gerekli<br></span>
+          <span *ngIf="registerForm.controls['password'].errors['minlength']">Parola en az 6 karakter olmalıdır<br></span>
+          <span *ngIf="registerForm.controls['password'].errors['confirmed']">Parolalar uyuşmamakta<br></span>
+        </small>
+      </p>
+
+      <ion-item>
+        <ion-label floating>Parola Tekrarı</ion-label>
+        <ion-input type="password" name="password_confirmation" formControlName="password_confirmation"></ion-input>
+      </ion-item>
+
+      <p *ngIf="registerForm.controls['password_confirmation'].errors && registerForm.controls['password_confirmation'].dirty" padding class="error-message">
+        <small class="up">
+          <span *ngIf="registerForm.controls['password_confirmation'].errors['required']">Parola tekrarı gereklidir<br></span>
+          <span *ngIf="registerForm.controls['password_confirmation'].errors['confirmed']">Parolalar uyuşmamakta<br></span>
+        </small>
+      </p>
+
+    </ion-list>
+
+    <button ion-button color="secondary" icon-left block [disabled]="!registerForm.valid">
+      <ion-icon name="person-add"></ion-icon>
+      Kayıt Ol
+    </button>
+  </form>
+</ion-content>

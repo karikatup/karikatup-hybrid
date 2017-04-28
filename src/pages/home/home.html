@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-fab right bottom>
+    <button ion-fab color="primary"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-tabs>
+    <ion-tab tabIcon="home" tabTitle="Anasayfa" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="people" tabTitle="Karikatüristler" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="person" tabTitle="Profil" [root]="tab3"></ion-tab>
+  </ion-tabs>
+</ion-content>

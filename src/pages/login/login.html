@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Karikatüp Hesabına Giriş Yap
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="doLogin()" [formGroup]="loginForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Kullanıcı Adı</ion-label>
+        <ion-input name="username" type="text" formControlName="username"></ion-input>
+      </ion-item>
+
+      <p *ngIf="loginForm.controls['username'].errors && loginForm.controls['username'].dirty " padding class="error-message">
+        <small class="up">
+          <span *ngIf="loginForm.controls['username'].errors['required']">Kullanıcı adı gerekli<br></span>
+          <span *ngIf="loginForm.controls['username'].errors['maxlength']">Kullanıcı adı 30 karakterden uzun olamaz<br></span>
+          <span *ngIf="loginForm.controls['username'].errors['pattern']">Kullanıcı adı sadece harf,rakam,düz çizgi ve alt çizgiden oluşabilir. Lütfen Türkçe karakter kullanmayınız.<br></span>
+        </small>
+      </p>
+
+      <ion-item>
+        <ion-label floating>Parola</ion-label>
+        <ion-input name="password" type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <p *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].dirty " padding class="error-message">
+        <small class="up">
+          <span *ngIf="loginForm.controls['password'].errors['required']">Şifre gerekli</span>
+          <span *ngIf="loginForm.controls['password'].errors['minlength']">Şifre en az 6 karakter olmalıdır</span>
+        </small>
+      </p>
+
+    </ion-list>
+
+    <button ion-button icon-left block type="submit" [disabled]="!loginForm.valid">
+      <ion-icon name="log-in"></ion-icon>
+      Giriş Yap
+    </button>
+  </form>
+
+  <button ion-button color="secondary" icon-left block type="button" (click)="showRegister()">
+    <ion-icon name="person-add"></ion-icon>
+    Kayıt Ol
+  </button>
+
+  <button ion-button color="light" icon-left block type="button" (click)="goHome()">
+    <ion-icon name="contact"></ion-icon>
+    Giriş Yapmadan Devam Et
+  </button>
+</ion-content>
